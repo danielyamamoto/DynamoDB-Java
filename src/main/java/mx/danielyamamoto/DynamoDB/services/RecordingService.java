@@ -16,6 +16,7 @@ public class RecordingService {
         Recording r = new Recording();
         r.setAgentId(recordingDTO.getAgentId());
         r.setTimestamp(recordingDTO.getTimestamp());
+        r.setVideoId(recordingDTO.getVideoId());
         r.setDuration(recordingDTO.getDuration());
         r.setTag(recordingDTO.getTag());
         r.setCategory(recordingDTO.getCategory());
@@ -32,8 +33,22 @@ public class RecordingService {
         recordingRepository.save(r);
     }
 
-    //READ
+    // READ
     public Iterable<Recording> listAll() {
         return recordingRepository.findAll();
+    }
+
+    // DELETE
+    public void deleteById(final String agentId, final Long timestamp) { recordingRepository.deleteById(agentId, timestamp); }
+
+    // Update
+    public Recording update(RecordingDTO recordingDTO) {
+        Recording r = new Recording();
+        r.setAgentId(recordingDTO.getAgentId());
+        r.setTimestamp(recordingDTO.getTimestamp());
+        // Data to update
+        r.setAgentName(recordingDTO.getAgentName());
+        r.setAgentLastname(recordingDTO.getAgentLastname());
+        return recordingRepository.update(r);
     }
 }

@@ -1,5 +1,6 @@
 package mx.danielyamamoto.DynamoDB.repositories;
 
+import mx.danielyamamoto.DynamoDB.dto.RecordingDTO;
 import mx.danielyamamoto.DynamoDB.models.Recording;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -44,5 +45,17 @@ public class RecordingRepository {
                 .build();
 
         recordingTable.deleteItem(deleteRequest);
+    }
+
+    public Recording update(final Recording recording) {
+        DynamoDbTable<Recording> recordingTable = getTable();
+        Key key = Key.builder().partitionValue(recording.getAgentId()).sortValue(recording.getTimestamp()).build();
+        Recording recordingRegister = recordingTable.getItem(r->r.key(key));
+        // Info to update
+        recordingRegister.setAgentName(recording.getAgentName());
+        recordingRegister.setAgentLastname(recording.getAgentLastname());
+        // Update
+        recordingTable.updateItem(recordingRegister);
+        return recording;
     }
 }
