@@ -1,8 +1,11 @@
 package mx.danielyamamoto.DynamoDB.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
+import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.regions.Region;
@@ -12,6 +15,7 @@ import java.net.URI;
 
 @Configuration
 public class DynamoConfig {
+    /*
     @Bean
     public DynamoDbClient getDynamoDbClient() {
         //Ver documentación
@@ -26,6 +30,18 @@ public class DynamoConfig {
         return client;
         //return DynamoDbClient.builder().region(Region.US_EAST_1).credentialsProvider(credentialsProvider).build();
     }
+    */
+
+    @Bean
+    public DynamoDbClient getDynamoDbClient() {
+        AwsCredentialsProvider credentialsProvider =
+                DefaultCredentialsProvider.builder().profileName("default").build();
+
+        return DynamoDbClient.builder()
+                .region(Region.US_EAST_1)
+                .credentialsProvider(credentialsProvider).build();
+    }
+
     @Bean
     public DynamoDbEnhancedClient getDynamoDbEnhancedClient() {
         return DynamoDbEnhancedClient.builder()

@@ -38,10 +38,24 @@ public class RecordingService {
         return recordingRepository.findAll();
     }
 
-    // DELETE
-    public void deleteById(final String agentId, final Long timestamp) { recordingRepository.deleteById(agentId, timestamp); }
+    public Iterable<Recording> findRecording(final String agentId) {
+        return recordingRepository.findRecording(agentId);
+    }
 
-    // Update
+    public Recording findById(final String agentId, final Long timestamp) {
+        return recordingRepository.findById(agentId, timestamp);
+    }
+
+    public Iterable<Recording> findByAgentName(final String agentName) {
+        return recordingRepository.findByAgentName(agentName);
+    }
+
+    // DELETE
+    public void deleteById(final String agentId, final Long timestamp) {
+        recordingRepository.deleteById(agentId, timestamp);
+    }
+
+    // UPDATE
     public Recording update(RecordingDTO recordingDTO) {
         Recording r = new Recording();
         r.setAgentId(recordingDTO.getAgentId());

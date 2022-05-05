@@ -1,9 +1,6 @@
 package mx.danielyamamoto.DynamoDB.models;
 
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbAttribute;
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.*;
 
 import java.util.Set;
 
@@ -42,6 +39,7 @@ public class Recording {
     public Boolean getSuccessfulOutcome() { return successfulOutcome; }
     public void setSuccessfulOutcome(Boolean successfulOutcome) { this.successfulOutcome = successfulOutcome; }
 
+    @DynamoDbSecondaryPartitionKey(indexNames = { "GSIAgentName" })
     public String getAgentName() { return agentName; }
     public void setAgentName(String agentName) { this.agentName = agentName; }
 

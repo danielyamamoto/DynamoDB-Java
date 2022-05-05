@@ -23,8 +23,26 @@ public class RecordingController {
 
     // Select all tuples
     @GetMapping("/all")
-    public ResponseEntity<Iterable<Recording>> getAll(){
+    public ResponseEntity<Iterable<Recording>> getAll() {
         return ResponseEntity.ok(recordingService.listAll());
+    }
+
+    @GetMapping("/{agentId}")
+    public ResponseEntity<Iterable<Recording>> getRecording(@PathVariable("agentId") String agentId) {
+        return ResponseEntity.ok(recordingService.findRecording(agentId));
+    }
+
+    // By Index
+    @GetMapping("/agentName/{agentName}")
+    public ResponseEntity<Iterable<Recording>> getByAgentName(@PathVariable("agentName") String agentName) {
+        // if(!personaService.existsId(personaID))
+        //    return new ResponseEntity("no existe", HttpStatus.NOT_FOUND);
+        return ResponseEntity.ok(recordingService.findByAgentName(agentName));
+    }
+
+    @GetMapping("/{agentId}/{timestamp}")
+    public Recording getRecordingById(@PathVariable("agentId") String agentId, @PathVariable("timestamp") Long timestamp) {
+        return recordingService.findById(agentId, timestamp);
     }
 
     // Delete a tuple
