@@ -15,7 +15,7 @@ import java.net.URI;
 
 @Configuration
 public class DynamoConfig {
-    /*
+    //*
     @Bean
     public DynamoDbClient getDynamoDbClient() {
         //Ver documentación
@@ -25,13 +25,14 @@ public class DynamoConfig {
                 // The region is meaningless for local DynamoDb but required for client builder validation
                 .region(Region.US_EAST_1)
                 .credentialsProvider(StaticCredentialsProvider.create(
-                        AwsBasicCredentials.create("87kvbg", "j1w7y")))
+                        AwsBasicCredentials.create("w1eravc", "35lkkh")))
                 .build();
         return client;
         //return DynamoDbClient.builder().region(Region.US_EAST_1).credentialsProvider(credentialsProvider).build();
     }
-    */
+    //*/
 
+    /*
     @Bean
     public DynamoDbClient getDynamoDbClient() {
         AwsCredentialsProvider credentialsProvider =
@@ -41,6 +42,7 @@ public class DynamoConfig {
                 .region(Region.US_EAST_1)
                 .credentialsProvider(credentialsProvider).build();
     }
+     */
 
     @Bean
     public DynamoDbEnhancedClient getDynamoDbEnhancedClient() {

@@ -1,6 +1,5 @@
 package mx.danielyamamoto.DynamoDB.repositories;
 
-import mx.danielyamamoto.DynamoDB.dto.RecordingDTO;
 import mx.danielyamamoto.DynamoDB.models.Recording;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -101,6 +100,7 @@ public class RecordingRepository {
         return recording;
     }
 
+    // PRIVATE METHODS
     private DynamoDbTable<Recording> getTable() {
         DynamoDbTable<Recording> recordingTable = dynamoDbEnhancedClient.table("Recording", TableSchema.fromBean(Recording.class));
         return recordingTable;
