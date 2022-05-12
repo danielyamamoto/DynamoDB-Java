@@ -21,7 +21,7 @@ public class DynamoConfig {
         //Ver documentación
         //https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/CodeSamples.Java.html#CodeSamples.Java.Credentials
         DynamoDbClient client = DynamoDbClient.builder()
-                .endpointOverride(URI.create("http://localhost:8000"))
+                .endpointOverride(URI.create("http://10.48.184.63:8000"))
                 // The region is meaningless for local DynamoDb but required for client builder validation
                 .region(Region.US_EAST_1)
                 .credentialsProvider(StaticCredentialsProvider.create(
